@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="esse quiz foi feito para testa seus conhecimentos sobre o tema apresentado por mim jayne">
+    <meta name="author" content="herbert souza">
+    <meta name="robots" content="index follow"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de jade</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    
+    <header>
+        <div class="container_header">
+            <div>
+                <h1>Quiz: Cozinha asiática</h1>
+                <h2>Pontos: <span id="pontos">0</span></h2>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container_quiz">
+            <audio id="aplauso" src="audio/aplausos.mp3"></audio>
+            <audio id="errou" src="audio/negative.mp3"></audio>
+            <audio id="acerto" src="audio/positive.mp3"></audio>
+            <div class="card_quiz">
+                <div class="card_pergunta">
+
+                    <h2><span id="nquestao">0</span> <span id="questao">pergunta tal coisa</span></h2>
+                </div>
+                <div class="card_resposta">
+                    <div id="A" onclick="validar('A', this)">A</div>
+                    <div id="B" onclick="validar('B', this)">B</div>
+                    <div id="C" onclick="validar('C', this)">C</div>
+                    <div id="D" onclick="validar('D', this)">D</div>
+                </div>
+            </div>
+            <div>
+                <p id="auxiliar_nquestao">Voçê esta na pergunta <span id="numero_pergunta">0</span> de <span>9</span></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Desenvolvido por "Hernert souza"</p>
+    </footer>
+
+    <script src="script/function.js"></script>
+</body>
+</html>

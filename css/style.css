@@ -1,0 +1,89 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container_header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-block: 20px;
+}
+header h1{
+    font: 600 30px "Arial";
+}
+header h2{
+    margin-top: 10px;
+    font: 600 22px "Arial";
+}
+.container_quiz{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+    gap: 20px;
+}
+.card_quiz{
+    width: 60%;
+    box-shadow: 0 0 7px 1px rgb(130, 97, 250);
+    padding: 20px;
+    border-radius: 15px;
+}
+.card_pergunta{
+    margin-bottom: 10px;
+    text-align: center;
+    font: 600 16px "Arial";
+}
+#nquestao{
+    background: rgb(7, 144, 255);
+    color: white;
+    border-radius: 100%;
+    padding-inline: 5px;
+}
+
+.card_resposta div{
+    margin: 10px 0;
+    padding-block: 10px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    font: normal 16px "Arial";
+
+}
+.card_resposta div:hover{
+    background: #c2c2c2;
+}
+
+footer{
+    text-align: center;
+    font: normal 12px "Arial";
+    padding-block: 20px;
+}
+
+/*manipulado por javascript*/
+.pergunta_errada{
+    color: white;
+    animation: erro .5s infinite;
+}
+@keyframes erro{
+    to{
+        background: rgb(245, 30, 30);
+    }
+    from{
+        color: black;
+    }
+}
+
+.pergunta_certa{
+    color: white;
+    animation: acerto .5s infinite;
+}
+@keyframes acerto {
+    to{
+        background: rgb(11, 252, 11);
+    }
+    from{
+        color: black;
+    }
+}
