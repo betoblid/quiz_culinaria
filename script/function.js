@@ -1,5 +1,6 @@
 
 
+
 const Questao = document.getElementById("questao");
 const nquestao = document.getElementById("nquestao");
 
@@ -16,6 +17,8 @@ const aplauso = document.getElementById("aplauso")
 const erro = document.getElementById("errou")
 const acerto = document.getElementById("acerto")
 
+const card = document.getElementById("quiz")
+const card_fim = document.getElementById("resu")
 
 const pergunta = [
     {
@@ -31,9 +34,11 @@ const pergunta = [
     },
     {
         id: 2,
-        pergunta: "O bolinho de feijão é um prato tipico da coreia do Sul. Mito ou verdade",
+        pergunta: "O bolinho de feijão é um prato tipico da coreia do Sul.",
         reposta_A: "Verdade",
         resposta_B: "Mito",
+        resposta_C: "Não",
+        reposta_D: "Talvez",
         resposta_correta: "Mito",
         correto: "B"
     },
@@ -42,6 +47,8 @@ const pergunta = [
         pergunta: "Na tailândia é um habito comer com as mãos tanto nas ruas como em residências?",
         reposta_A: "Sim",
         resposta_B: "Não",
+        resposta_C: "Talvez",
+        resposta_D: "não sei",
         resposta_correta: "Sim",
         correto: "A"
     },
@@ -50,9 +57,8 @@ const pergunta = [
         pergunta: " São pratos típicos da índia: Samosa, pizza, Yakissoba e Pad Thai?",
         reposta_A: " sim, esses alimentos fazem parte da culinária indiana.",
         resposta_B: "Não, esses alimentos não fazem parte da culinária indiana.",
-        resposta_C: "",
-        resposta_D: "",
-        resposta_E: "",
+        resposta_C: "Não, esses alimentos não fazem parte da culinária coreana.",
+        resposta_D: "sim, esses alimentos fazem parte da culinária Brasileira.",
         resposta_correta: "Não, esses alimentos não fazem parte da culinária indiana.",
         correto: "B"
     },
@@ -61,8 +67,8 @@ const pergunta = [
         pergunta: "No Japão, sushi é considerado prato principal.",
         reposta_A: "Verdadeiro",
         resposta_B: "Falso",
-        resposta_C: "",
-        resposta_D: "",
+        resposta_C: "Não",
+        resposta_D: "Talvez",
         resposta_E: "",
         resposta_correta: "Falso",
         correto: "B"
@@ -95,7 +101,7 @@ const pergunta = [
         reposta_A: "Tailândia e França",
         resposta_B: "Japão e China",
         resposta_C: "Coreia do sul e Malásia",
-        resposta_D: "",
+        resposta_D: "Europa e Coreia do Sul",
         resposta_E: "",
         resposta_correta: "Tailândia e França",
         correto: "A"
@@ -105,20 +111,21 @@ const pergunta = [
         pergunta: "A maioria dos pratos típicos vietnamitas são picantes e salgados. (V) ou (F). ",
         reposta_A: " Verdade, os pratos vietnamitas são compostos por uma quantidade elevada de sal e pimenta. ",
         resposta_B: "Falso. Os vietnamitas não costumam utilizar sal e pimenta em suas refeições, então dificilmente haverá tempero nos alimentos.",
-        resposta_C: "",
-        resposta_D: "",
-        resposta_E: "",
+        resposta_C: "Verdade, as comidas vietnamitas são compostos por uma quantidade elevada de açucar e café.",
+        resposta_D: "Falso. Os vietnamitas não costumam utilizar Açucar e Café em suas refeições, então dificilmente haverá tempero nos alimentos.",
+
         resposta_correta: "Falso. Os vietnamitas não costumam utilizar sal e pimenta em suas refeições, então dificilmente haverá tempero nos alimentos.",
         correto: "B"
     },
 ]
+
 
 //variavel de auxilio 
 let aux = 0;
 //variavel onde armazena os pontos dos usuarios
 let pontos = 0;
 
-function Criarquestao(){
+function Criarquestao() {
 
     nquestao.textContent = pergunta[aux].id
     Questao.textContent = pergunta[aux].pergunta
@@ -134,22 +141,39 @@ function Criarquestao(){
 Criarquestao()
 
 //function que fica responsavel por selecionar a proxima questão
-function next(){
+function next() {
 
-    if(aux >= pergunta.length - 1){
+    if (aux >= pergunta.length - 1) {
         aux = 0
         Criarquestao()
-    } else{
+        fimGamer()
+    } else {
         aux += 1
         Criarquestao()
     }
 }
 
+//function responsavel por chamar o fim de gamer
+function fimGamer() {
+
+    card.classList.add("hidden")
+    document.getElementById("auxiliar_nquestao").classList.add("hidden")
+
+    //criar um novo card onde tera algumas especificações
+
+    card_fim.innerHTML = `<p>Parabéns por chegar até o fim espero que tenha gostado</p>
+    <p>Voçê acertou ${pontos / 10}, Parabéns pelo seu esforço
+    <p>esse projeto foi feito com o objetivo de saber se estão atentos a apresentação e ao tema abordado nela</p>`
+
+
+    //som de aplausos apos o final
+    aplauso.play()
+}
 //essa function é muito importante para usuario, ela é responsavel por mostra pro usuario qual é a certa e qual a errada
 // caso erre mostra a certa e apontar qual marcou caso certo aponta qual clico.
-function certo(entrada, certo){
+function certo(entrada, certo) {
     //os dois parametros são entrada feita pelo usuario e acerto pego dos dados das perguntas
-    if(entrada === certo){
+    if (entrada === certo) {
 
         acerto.play()
         document.getElementById(certo).classList.add("pergunta_certa");
@@ -158,7 +182,7 @@ function certo(entrada, certo){
             document.getElementById(certo).classList.remove("pergunta_certa");
         }, 1500);
 
-    }else{
+    } else {
         document.getElementById(certo).classList.add("pergunta_certa")
         document.getElementById(entrada).classList.add("pergunta_errada")
 
@@ -168,22 +192,17 @@ function certo(entrada, certo){
             document.getElementById(entrada).classList.remove("pergunta_errada")
         }, 1500);
 
-        
-    }
 
-    
+    }
 
 }
 
 
-function validar(npergunta, resposta){
+function validar(npergunta, resposta) {
 
     let respostaUsuario = resposta.textContent
 
-    console.log(respostaUsuario)
-    
-
-    if(pergunta[aux].resposta_correta === respostaUsuario ){
+    if (pergunta[aux].resposta_correta === respostaUsuario) {
 
         //caso acerte usuario ganha 10 pontos
         pontos += 10
@@ -192,13 +211,14 @@ function validar(npergunta, resposta){
             next()
         }, 1700);
 
-    } else{
+    } else {
         certo(npergunta, pergunta[aux].correto)
         setTimeout(() => {
             next()
         }, 2300);
-        
+
     }
 
-    
+
+
 }
