@@ -44,7 +44,7 @@ const pergunta = [
     },
     {
         id: 3,
-        pergunta: "Na tailândia é um habito comer com as mãos tanto nas ruas como em residências?",
+        pergunta: "Na tailândia é um hábito comer com as mãos tanto nas ruas como em residências?",
         reposta_A: "Sim",
         resposta_B: "Não",
         resposta_C: "Talvez",
@@ -161,9 +161,9 @@ function fimGamer() {
 
     //criar um novo card onde tera algumas especificações
 
-    card_fim.innerHTML = `<p>Parabéns por chegar até o fim espero que tenha gostado</p>
-    <p>Voçê acertou ${pontos / 10}, Parabéns pelo seu esforço
-    <p>esse projeto foi feito com o objetivo de saber se estão atentos a apresentação e ao tema abordado nela</p>`
+    card_fim.innerHTML = `<p>Parabéns por chegar até o fim!, espero que tenha gostado.</p>
+    <p>Você acertou ${pontos / 10}, Parabéns pelo seu esforço.</p>
+    <p>Esse projeto foi feito com o objetivo de saber se estão atentos a apresentação e ao tema abordado.</p>`
 
 
     //som de aplausos apos o final
